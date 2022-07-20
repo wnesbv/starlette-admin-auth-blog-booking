@@ -1,0 +1,78 @@
+
+{% extends "base.html" %}
+{% block title %} new rent {% endblock %}
+
+{% block content %}
+
+    <h1 class="lead my-3">new rent</h1>
+
+    <div class="card">
+        <div class="card-body border-bottom py-3">
+
+        <form method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <select
+                    name="rent_belongs"
+                    class="form-control shadow">
+                    <option value="">item select</option>
+
+                    {% for obj in odj_item %}
+                        <option value="{{ obj.id }}">
+                            {{ obj.id }}
+                        </option>
+                    {% endfor %}
+
+                </select>
+            </div>
+            <div class="mb-3">
+                <input
+                    type="text"
+                    required
+                    class="form-control"
+                    name="title"
+                    value="{{ title }}"
+                    placeholder="rent 01"
+                />
+            </div>
+
+            <div class="mb-3">
+
+            <label class="form-label">description</label>
+            <textarea class="form-control" name="description" maxlength="333" spellcheck>{{ description }}</textarea>
+
+            <div id="help" class="form-text">help text</div>
+            </div>
+
+            <div class="mb-3">
+                <input
+                    type="file"
+                    required
+                    class="form-control"
+                    name="file"
+                    value="{{ file }}"
+                    placeholder="item image"
+                />
+
+            </div>
+
+            <button type="submit" class="btn btn-outline-primary btn-sm">
+                submit
+            </button>
+        </form>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block script %}
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jodit/3.17.1/jodit.min.css"/>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jodit/3.17.1/jodit.min.js"></script>
+
+<script>
+    const editor = Jodit.make('textarea');
+</script>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1 class="display-6">search reserve</h1>
+
+    <h4 class="lead my-5">search reserve: booking</h4>
+
+    <form class="row" method="POST">
+
+        <div class="list-group col-sm">
+            <span class="list-group-item">
+                <input type="date" name="time_start"value="{{ time_start }}">
+            </span>
+        </div>
+        <div class="list-group col-sm">
+            <span class="list-group-item">
+                <input type="date" name="time_end" value="{{ time_end }}">
+            </span>
+        </div>
+
+        <button type="submit" class="btn btn-outline-primary my-4">
+            search
+        </button>
+    </form>
+
+{% endblock %}
+

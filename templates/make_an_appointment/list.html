@@ -1,0 +1,68 @@
+
+{% extends "base.html" %}
+{% block title %} list reserve {% endblock %}
+
+{% block content %}
+
+<h1 class="lead my-4">list reserve..</h1>
+
+<div class="flex_cont">
+    {% if odj_list %}
+    {% for odj in odj_list %}
+    <div class="col-xxl-5 col-sm-10 card p-3 me-2 mb-3">
+
+    <ul class="card-header list-group list-group-horizontal">
+        <li class="list-group-item">
+            <sup class="float-start">id:</sup>
+            <span class="me-3">{{ odj.id }}</span>
+        </li>
+        <li class="list-group-item">
+            <sup class="float-start">owner reserve:</sup>
+            <span>{{ odj.owner_reserve }}</span>
+        </li>
+        <li class="list-group-item">
+            <sup class="float-start">reserve item:</sup>
+            {{ odj.reserve_something }}
+        </li>
+    </ul>
+    <ul class="card-header list-group list-group-horizontal">
+{#         <li class="list-group-item">
+            <sup class="float-start">rsv time:</sup>
+            <time>{{ odj.reserve_time }}</time>
+        </li> #}
+
+        <li class="list-group-item">
+            <sup class="float-start">start:</sup>
+            <time>{{ odj.time_start.strftime("%d-%m-%Y") }}</time>
+        </li>
+        <li class="list-group-item">
+            <sup class="float-start">end:</sup>
+            <time>{{ odj.time_end.strftime("%d-%m-%Y") }}</time>
+        </li>
+    </ul>
+
+    <ul class="card-body list-group list-group-flush">
+        <li class="list-group-item">
+            <sup class="float-start">description:</sup>
+            {{ odj.description }}
+        </li>
+        <li class="list-group-item">
+            <sup class="float-start">period:</sup>
+            {{ odj.reserve_period }}
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">
+            <a class="page-link" href="/reserve/detail/{{ odj.id }}">
+                detail
+            </a>
+        </li>
+    </ul>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+</div>
+
+{% endblock %}

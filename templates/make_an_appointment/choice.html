@@ -1,0 +1,94 @@
+
+{% extends "base.html" %}
+{% block title %} choice {{ rtf.id }}  {% endblock %}
+
+{% block content %}
+
+    <h1 class="lead my-4">choice item...</h1>
+
+    <div class="card">
+
+    <ul class="card-footer list-group list-group-horizontal">
+        <li class="list-group-item">
+            <sup>id</sup>
+            <span>
+                {{ rtf.id }}
+            </span>
+        </li>
+        <li class="list-group-item">
+            <sup>start</sup>
+            <time>
+                {{ rtf.time_start.strftime("%d-%m-%Y") }}
+            </time>
+        </li>
+        <li class="list-group-item">
+            <sup>end</sup>
+            <time>
+                {{ rtf.time_end.strftime("%d-%m-%Y") }}
+            </time>
+        </li>
+        <li class="list-group-item">
+            <sup class="float-start">reserve period:</sup>
+            {{ reserve_period }}
+        </li>
+    </ul>
+
+    </div>
+
+    <div class="flex_cont">
+
+    {% for item in obj_item %}
+
+    <div class="col-xxl-5 col-sm-10 card p-3 me-2 my-3">
+
+    <ul class="card-header list-group list-group-horizontal">
+        <li class="list-group-item">
+            <sup class="float-start">id:</sup>
+            {{ item.id }}
+        </li>
+        <li class="list-group-item">
+            <sup class="float-start">owner item:</sup>
+            {{ item.owner_item }}
+        </li>
+    </ul>
+
+    <ul class="card-body list-group list-group-flush">
+        <li class="list-group-item">
+            <sup class="float-start">title:</sup>
+            {{ item.title }}
+        </li>
+        <li class="list-group-item">
+            {{ item.description | safe }}
+        </li>
+    </ul>
+
+    <ul class="card-body list-group list-group-flush">
+        <li class="list-group-item">
+            <sup>created</sup>
+            <time>{{ item.created_at }}</time>
+        </li>
+    </ul>
+
+    <ul class="card-footer list-group list-group-flush">
+        <li class="list-group-item">
+        <a class="page-link" href="/item/details/{{ item.id }}">
+            details
+        </a>
+        </li>
+    </ul>
+
+    <form class="card-footer row mt-3" method="POST">
+    <input type="text" name="reserve_something" class="visually-hidden" value="{{ item.id }}">
+        <button type="submit" class="btn btn-outline-primary btn-sm">
+            submit
+        </button>
+    </form>
+    </div>
+
+        {% else %}
+        <span class="mt-5">no information available</span>
+    {% endfor %}
+
+    </div>
+
+{% endblock %}
